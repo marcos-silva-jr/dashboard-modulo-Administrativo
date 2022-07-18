@@ -12,12 +12,6 @@
 		
 	$hoje = date('Y'); //PEGA DATA ATUAL PARA PREENCHER AUTOMATICO NA BAIXA
 	
-	define('DB_HOST'            , "192.168.10.199");
-    define('DB_USER'            , "antares");
-    define('DB_PASSWORD'        , "inox@60xl");
-    define('DB_NAME'            , "ATUAL");
-    define('DB_DRIVER'          , "sqlsrv");
-	  
 	  
 	//date_default_timezone_set('America/Sao_Paulo');
 	$hoje = date('Y'); //PEGA DATA ATUAL PARA PREENCHER AUTOMATICO NA BAIXA
@@ -33,8 +27,7 @@
 	try {
 		$Conexao    = Conexao::getConnection(); //SELECT PARA CONTAR QUANTOS USUÁRIOS TEM NO TOTAL
 		
-		$query2      = $Conexao->query("SELECT TIPO_USUARIO FROM A_USER_SYSTEM
-										WHERE NOME_USUARIO = '{$operador}'");
+		
 		
 		$usuarios2   = $query2->fetchAll();
 	
@@ -129,12 +122,7 @@
 					
 					//SELECT GERAL PARA PEGAR OS PARCEIROS E MOTORISTAS COM SEUS CONTADORES
 					
-					$quer = $Conexao->query("SELECT OPERADOR, COUNT(OPERADOR) AS CONTT FROM A_TB_SYSTEM
-													WHERE OPERADOR NOT LIKE '%WESL%'
-													AND OPERADOR NOT LIKE '%MOT%'
-													AND DT_INCLUSAO > '{$datahoje}'
-													GROUP BY OPERADOR
-													ORDER BY COUNT(OPERADOR) DESC");
+					
 																		
 					$executa = $quer->fetchAll();
 					$primeirocontador=1;
@@ -481,7 +469,7 @@
 				try {
 					$Conexao    = Conexao::getConnection(); //SELECT PARA CONTAR QUANTOS USUÁRIOS TEM NO TOTAL
 					
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM");
+					
 					
 					$usuarios2   = $query2->fetchAll();
 				
@@ -489,9 +477,7 @@
 							$contador_Usuarios = $busca_usuario2['CONTT'];							
 						} 
 					
-									
-					//SALVAR NUMERO DO OPERACIONAL
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=1");
+					
 				
 					$usuarios2   = $query2->fetchAll();
 				
@@ -499,8 +485,7 @@
 							$contador_Op = $busca_usuario2['CONTT'];							
 						} 
 					
-					//SALVAR NUMERO DE MOTORISTAS
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=2");
+					
 				
 					$usuarios2   = $query2->fetchAll();
 				
@@ -508,8 +493,7 @@
 							$contador_Motoristas = $busca_usuario2['CONTT'];							
 						} 
 					
-					//SALVAR NUMERO DE AGREGADOS
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=3");
+					
 				
 					$usuarios2   = $query2->fetchAll();
 				
@@ -517,27 +501,21 @@
 							$contador_Agregados = $busca_usuario2['CONTT'];							
 						} 
 						
-					//SALVAR NUMERO DE PARCEIROS
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=4");
-				
+								
 					$usuarios2   = $query2->fetchAll();
 				
 						foreach($usuarios2 as $busca_usuario2) {
 							$contador_Parceiros = $busca_usuario2['CONTT'];							
 						} 
 					
-					//SALVAR NUMERO DE CLIENTES
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=5");
-				
+					
 					$usuarios2   = $query2->fetchAll();
 				
 						foreach($usuarios2 as $busca_usuario2) {							
 							$contador_Clientes = $busca_usuario2['CONTT'];							
 						} 
 						
-					//SALVAR NUMERO DE VENDEDORES
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_USER_SYSTEM WHERE TIPO_USUARIO=6");
-				
+					
 					$usuarios2   = $query2->fetchAll();
 				
 						foreach($usuarios2 as $busca_usuario2) {							
@@ -606,17 +584,14 @@
 				try {
 					$Conexao    = Conexao::getConnection(); //SELECT PARA CONTAR QUANTOS USUÁRIOS TEM NO TOTAL
 					
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_TB_SYSTEM WHERE DT_INCLUSAO > '{$datahoje}'");
-					
+										
 					$usuarios2   = $query2->fetchAll();
 				
 						foreach($usuarios2 as $busca_usuario2) {							
 							$contador_Baixas = $busca_usuario2['CONTT'];							
 						} 					
 					
-					//SALVAR CONTADOR DA SERVICE
-					$query2      = $Conexao->query("SELECT COUNT (*) AS CONTT FROM A_TB_SYSTEM WHERE DT_INCLUSAO > '{$datahoje}'");
-				
+									
 					$usuarios2   = $query2->fetchAll();
 				
 						foreach($usuarios2 as $busca_usuario2) {							
@@ -653,10 +628,6 @@
 		
 		
 		<br><br>		
-	
-	
-		
-		
 		
 	<!-- ====================================== ********************************** ==========================
 			=========================================== ---------------------------------- ===================
@@ -739,9 +710,7 @@
 				
 				// SELECT PARA PEGAR AS INFORMACOES NECESSARIAS PARA MOSTRAR NA TABELA				
 				
-				$query      = $Conexao->query("SELECT FILIAL, NR_DOC, CONVERT(VARCHAR,DT_RECEBIMENTO,103) AS DT_RECEBIMENTO, CONVERT(VARCHAR,HR_RECEBIMENTO,108) AS HORAA, OPERADOR FROM A_TB_SYSTEM
-												WHERE DT_INCLUSAO > '{$datahoje}' order by DT_INCLUSAO desc");
-		
+						
 				$usuarios   = $query->fetchAll();
 				
 				
