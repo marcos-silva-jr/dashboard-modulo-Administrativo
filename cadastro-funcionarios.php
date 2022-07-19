@@ -12,19 +12,13 @@
 	---------- LISTAR TODOS OS USUÁRIOS ----------------------
 	----------------------------------------------------------
 
-	-- SELECT * FROM A_USER_SYSTEM
-
 	----------------------------------------------------------
 	---------- ADICIONAR NOVA COLUNA NA TABELA ---------------
 	----------------------------------------------------------
 
-	-- ALTER TABLE A_USER_SYSTEM ADD STATUS_USUARIO VARCHAR(1)
-
 	----------------------------------------------------------
 	--------- ATUALIZAR CADASTRO DE USUÁRIO ------------------
 	----------------------------------------------------------
-
-	-- UPDATE A_USER_SYSTEM SET STATUS_USUARIO='0' WHERE USUARIO_CPF='05578963512'
 
 	-------------------------------------------------------
 	--------- INSERIR USUÁRIO NO SISTEMA ------------------
@@ -37,8 +31,6 @@
 	- TIPO: TIPO DE USUÁRIO: PADRÃO: 0 ATIVO - 1 INATIVO
 	- DATA: A DATA EM QUE FOI FEITO O CADASTRO (HOJE)
 
-	--INSERT INTO A_USER_SYSTEM (USUARIO_CPF, NOME_USUARIO, SENHA_USUARIO, TIPO_USUARIO, DATA_CADASTRO) VALUES ('CPF_TODOS_NUMEROS_SEM_PONTO', 'NOME_APENAS_O_PRI', 'SENHAPADRAO_5_PRIMEIROS_DIGITOS_DO_CPF', '0_ATIVO_1_INATIVO', 'DATA_DE_HOJE');
-
 	----------------------------------------------------------------
 	-- SE HOUVER MAIS COMANDOS SERÃO LISTADOS AQUI POSTERIORMENTE --
 	----------------------------------------------------------------
@@ -49,12 +41,7 @@
 	date_default_timezone_set('America/Sao_Paulo');
 	$hoje = date('Y.m.d H:i:s'); //PEGA DATA ATUAL PARA PREENCHER AUTOMATICO NA BAIXA
 	
-	define('DB_HOST'            , "192.168.10.199");
-    define('DB_USER'            , "antares");
-    define('DB_PASSWORD'        , "inox@60xl");
-    define('DB_NAME'            , "ATUAL");
-    define('DB_DRIVER'          , "sqlsrv");
-	
+		
 	session_start(); // --------------------- INICIA A SESSÃO DO USUARIO
 	$operador = $_SESSION['login']; //------ CRIA VARIAVEL COM NOME DE USUARIO 
 	
@@ -64,10 +51,7 @@
 	
 	try {
 		$Conexao    = Conexao::getConnection(); //SELECT PARA CONTAR QUANTOS USUÁRIOS TEM NO TOTAL
-		
-		$query2      = $Conexao->query("SELECT TIPO_USUARIO FROM A_USER_SYSTEM
-										WHERE NOME_USUARIO = '{$operador}'");
-		
+				
 		$usuarios2   = $query2->fetchAll();
 	
 			foreach($usuarios2 as $busca_usuario2) {							

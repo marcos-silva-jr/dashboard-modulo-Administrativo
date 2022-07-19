@@ -4,12 +4,6 @@
 	date_default_timezone_set('America/Sao_Paulo');
 	$hoje = date('Y'); //PEGA DATA ATUAL PARA PREENCHER AUTOMATICO NA BAIXA
 	
-	define('DB_HOST'            , "192.168.10.199");
-    define('DB_USER'            , "antares");
-    define('DB_PASSWORD'        , "inox@60xl");
-    define('DB_NAME'            , "ATUAL");
-    define('DB_DRIVER'          , "sqlsrv");
-	  
 	session_start();
 	$operador = $_SESSION['login']; //------CRIA VARIAVEL COM NOME DE USUARIO 
 	
@@ -20,8 +14,6 @@
 	try {
 		$Conexao    = Conexao::getConnection(); //SELECT PARA CONTAR QUANTOS USUÁRIOS TEM NO TOTAL
 		
-		$query2      = $Conexao->query("SELECT TIPO_USUARIO FROM A_USER_SYSTEM
-										WHERE NOME_USUARIO = '{$operador}'");
 		
 		$usuarios2   = $query2->fetchAll();
 	
@@ -33,7 +25,6 @@
 				} else { }
 			} 
 		}	catch (Exception $e){	}
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -92,8 +83,6 @@
 				try {
 				$Conexao    = Conexao::getConnection(); //SELECT PERSONALIZADO PARA LISTAR NA TELA OS USUÁRIOS
 				
-				$query2      = $Conexao->query("SELECT USUARIO_CPF, NOME_USUARIO, SENHA_USUARIO, 
-				TIPO_USUARIO, CONVERT(VARCHAR,DATA_CADASTRO,103) AS DATA,FILIAL ,STATUS_USUARIO FROM A_USER_SYSTEM ORDER BY DATA_CADASTRO DESC");
 				
 				$usuarios2   = $query2->fetchAll();
 				
